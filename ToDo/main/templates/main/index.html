@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do List</title>
+    <link rel='stylesheet' href="{% static 'main/styles.css' %}">
+</head>
+<body>
+    <div id='nav_bar'>My To Do App</div>
+    <div id='container'>
+        <form action='' method='POST' id="main_form">
+            {% csrf_token %}
+            <input id='add_item' type="text" placeholder="Add Item.." name='content'>
+            <button type="submit" id='submit'>Add</button>
+        </form>
+        <div id='list_container'>
+            {% for item in list_items %}
+                <div class='todo_item'>
+                    <div class='item_content'>{{item.content}}</div>
+                    <div class='date'>{{item.date_added}}</div>
+                    <button class='delete' id="{{item.id}}" form="main_form" formaction="del/{{item.id}}/">Delete</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
