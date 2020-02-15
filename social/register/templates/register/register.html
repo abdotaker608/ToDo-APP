@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel='stylesheet' href='{% static "register/styles.css" %}'>
+</head>
+<body>
+    <form action='/home/' method="POST">
+        {% csrf_token %}
+        <fieldset id='null_info'>
+            <label for ='firstname'>First name: </label>
+            <input id='firstname' required type='text' name='firstname'><br>
+            <label for = 'lastname'>Last name: </label>
+            <input id='lastname' required name='lastname' type='text'>
+        </fieldset>
+        <fieldset id='imp_info'>
+            <label for='username'>Username: </label>
+            <input id='username' required name='username' type='text'><br>
+            <label for='email'>Email: &nbsp; &nbsp; &nbsp; &nbsp;</label>
+            <input id='email' required name='email' type='email'><br>
+            <label for='password'>Password:&nbsp;</label>
+            <input id='password' required name='password' type='password'>
+        </fieldset>
+        <button type='submit' id='submit'>Create</button>
+    </form>
+    {% if error %}
+    <div id='error'>{{error_message}}</div>
+    {% endif %}
+</body>
+</html>
